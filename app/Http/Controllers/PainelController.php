@@ -4,30 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Treino;
 use App\Models\Pagamento;
+use App\Models\Treino;
 use Carbon\Carbon;
 
 class PainelController extends Controller
 {
+
     public function alunoDashboard()
     {
         $aluno = Auth::guard('aluno')->user();
 
-        // Se por algum motivo não encontrar o aluno, redireciona para o login
         if (!$aluno) {
             return redirect()->route('aluno.login.form');
         }
 
-        // Busca o treino mais recente do aluno
-        $aluno->load('professor', 'plano');
-        
-        $treinoAtual = Treino::where('idAluno', $aluno->idAluno)
-                            ->orderBy('data_inicio', 'desc')
-                            ->first();
 
+        $aluno->load('professor', 'plano.modalidades');
+        
         $ultimoPagamento = Pagamento::where('idAluno', $aluno->idAluno)
-                                    ->where('status', 'Pago')
+                                    ->where('status', 'PAGO')
                                     ->orderBy('data_pagamento', 'desc')
                                     ->first();
 
@@ -37,7 +33,7 @@ class PainelController extends Controller
         if ($ultimoPagamento) {
             if ($aluno->plano && $aluno->plano->duracaoMeses > 0) {
                 
-                $dataUltimoPgto = Carbon::parse($ultimoPagamento->data_pagamento);
+                $dataUltimoPgto = Carbon::parse($ultimoPagamento->dataPagamento);
                 
                 $proximoVencimentoCarbon = $dataUltimoPgto->addMonths($aluno->plano->duracaoMeses);
                 $proximoVencimento = $proximoVencimentoCarbon->format('Y-m-d');
@@ -54,13 +50,33 @@ class PainelController extends Controller
             $statusPagamento = 'Pendente';
         }
 
-        // 4. Envia todos os dados para a view
         return view('aluno.dashboard', [
             'aluno' => $aluno,
-            'treinoAtual' => $treinoAtual,
             'statusPagamento' => $statusPagamento,
             'ultimoPagamento' => $ultimoPagamento,
             'proximoVencimento' => $proximoVencimento
+        ]);
+    }
+
+    public function showPerfil()
+    {
+        $aluno = Auth::guard('aluno')->user();
+        $aluno->load('plano', 'professor');
+
+        return view('aluno.perfil', [
+            'aluno' => $aluno
+        ]);
+    }
+    public function showPagamentos()
+    {
+        $idAluno = Auth::guard('aluno')->id();
+
+        $pagamentos = Pagamento::where('idAluno', $idAluno)
+                                ->orderBy('data_pagamento', 'desc')
+                                ->get();
+
+        return view('aluno.pagamentos', [
+            'pagamentos' => $pagamentos
         ]);
     }
 }

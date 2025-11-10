@@ -21,7 +21,13 @@ Route::middleware('guest:aluno')->group(function () {
 Route::middleware('auth:aluno')->group(function () {
     Route::get('/aluno/dashboard', [PainelController::class, 'alunoDashboard'])->name('aluno.dashboard');
     Route::post('/aluno/logout', [AlunoAuthController::class, 'logout'])->name('aluno.logout');
+    Route::get('/aluno/mudar-senha', [AlunoAuthController::class, 'showChangePasswordForm'])->name('aluno.senha.form');
+    Route::post('/aluno/mudar-senha', [AlunoAuthController::class, 'updatePassword'])->name('aluno.senha.update');
+    Route::get('/aluno/perfil', [PainelController::class, 'showPerfil'])->name('aluno.perfil');
+    Route::get('/aluno/pagamentos', [PainelController::class, 'showPagamentos'])->name('aluno.pagamentos');
 });
+
+
 
 Route::prefix('gestao')->group(function () {
 
@@ -75,15 +81,6 @@ Route::prefix('gestao')->group(function () {
             Route::get('/{id}/editar', [AdminController::class, 'editAlunos'])->name('alunos.edit');
             Route::put('/{id}', [AdminController::class, 'updateAlunos'])->name('alunos.update');
             Route::patch('/{id}/bloqueio', [AdminController::class, 'toggleBlockAlunos'])->name('alunos.toggleBlock');
-        });
-
-        Route::prefix('treinos')->group(function () {
-            Route::get('/', [AdminController::class, 'indexTreinos'])->name('treinos.index');
-            Route::get('/novo', [AdminController::class, 'createTreinos'])->name('treinos.create');
-            Route::post('/', [AdminController::class, 'storeTreinos'])->name('treinos.store');
-            Route::get('/{id}/editar', [AdminController::class, 'editTreinos'])->name('treinos.edit');
-            Route::put('/{id}', [AdminController::class, 'updateTreinos'])->name('treinos.update');
-            Route::delete('/{id}', [AdminController::class, 'destroyTreinos'])->name('treinos.destroy');
         });
     });
 

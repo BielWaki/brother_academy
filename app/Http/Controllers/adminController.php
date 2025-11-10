@@ -104,8 +104,7 @@ class AdminController extends Controller
         $plano = Plano::findOrFail($id);
         $isEdit = true;
         $modalidades = Modalidade::all();
-        $modalidadesAssociadasIds = $plano->modalidades()->pluck('idModalidade')->toArray();
-
+        $modalidadesAssociadasIds = $plano->modalidades()->pluck('Modalidades.idModalidade')->toArray();
         return view('admin.planos.create_edit', compact('plano', 'isEdit', 'modalidades', 'modalidadesAssociadasIds'));
     }
 
@@ -151,7 +150,7 @@ class AdminController extends Controller
             return redirect()->route('planos.index')->with('success', 'Plano desativado com sucesso!');
             
         } catch (\Exception $e) {
-             return back()->withErrors(['error' => 'Erro ao desativar o plano.']);
+            return back()->withErrors(['error' => 'Erro ao desativar o plano.']);
         }
     }
 
@@ -169,7 +168,7 @@ class AdminController extends Controller
             return redirect()->route('planos.index')->with('success', 'Plano reativado com sucesso!');
             
         } catch (\Exception $e) {
-             return back()->withErrors(['error' => 'Erro ao reativar o plano.']);
+            return back()->withErrors(['error' => 'Erro ao reativar o plano.']);
         }
     }
 

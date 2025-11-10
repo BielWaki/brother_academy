@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia | Alcance Seus Limites</title>
+    <title>Academia BROTHER | Alcance Seus Limites</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -32,7 +32,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <a href="{{ route('homepage') }}" class="text-3xl font-extrabold text-primary-blue tracking-wider">
-                Academia
+                Academia Brother 💪🏻
             </a>
             
             <nav class="hidden md:flex space-x-6">
@@ -102,22 +102,22 @@
                         @endif
 
                         <div class="p-8 pb-4 flex-grow">
-                            <h3 class="text-3xl font-extrabold mb-2 
+                            <h3 class="text-3xl font-extrabold mb-2
                                 @if($plano->is_vantajoso) text-white @else text-gray-900 @endif">
                                 {{ $plano->nomePlano }}
                             </h3>
-                            <p class="text-sm 
+                            <p class="text-sm
                                 @if($plano->is_vantajoso) text-gray-300 @else text-gray-500 @endif
                             ">
-                                @if($plano->duracaoMeses > 1) 
+                                @if($plano->duracaoMeses > 1)
                                     {{ $plano->duracaoMeses }} meses de fidelidade
-                                @else 
+                                @else
                                     Sem fidelidade
                                 @endif
                             </p>
 
                             <div class="mt-4 mb-6">
-                                <p class="text-sm line-through 
+                                <p class="text-sm line-through
                                     @if($plano->is_vantajoso) text-gray-400 @else text-gray-500 @endif
                                 ">
                                     DE R$ {{ number_format($plano->valor, 2, ',', '.') }}/mês
@@ -128,7 +128,7 @@
                                 <p class="text-5xl font-extrabold mt-1">
                                     <span class="text-2xl">R$</span> 9,90*
                                 </p>
-                                <p class="text-sm mt-1 
+                                <p class="text-sm mt-1
                                     @if($plano->is_vantajoso) text-gray-300 @else text-gray-600 @endif
                                 ">
                                     no 1º mês, depois R$ {{ number_format($plano->valor, 2, ',', '.') }}/mês
@@ -150,18 +150,18 @@
                             </a>
                         </div>
                         
-                        <div class="p-8 border-t 
+                        <div class="p-8 border-t
                             @if($plano->is_vantajoso) border-gray-700 @else border-gray-200 @endif
                         ">
                             <ul class="text-left space-y-3">
                                 @foreach($plano->beneficios as $beneficio)
                                     <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-2 h-6 w-6 
-                                            @if($plano->is_vantajoso) text-green-400 @else text-green-500 @endif" 
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-2 h-6 w-6
+                                            @if($plano->is_vantajoso) text-green-400 @else text-green-500 @endif"
                                             viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                         </svg>
-                                        <span class="text-sm 
+                                        <span class="text-sm
                                             @if($plano->is_vantajoso) text-gray-200 @else text-gray-700 @endif
                                         ">
                                             {{ $beneficio }}
@@ -179,7 +179,6 @@
         </div>
     </section>
 
-    <!-- Seção de Modalidades ATUALIZADA com as novas cores -->
     <section id="modalidades" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Aulas e Treinos Exclusivos!</h2>

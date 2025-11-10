@@ -58,11 +58,11 @@
             
             <div class="mb-5">
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
                     placeholder="seu.email@exemplo.com"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-blue focus:border-primary-blue transition duration-150"
                     value="{{ old('email') }}"
@@ -71,18 +71,18 @@
             
             <div class="mb-6">
                 <label for="senha" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
-                <input 
-                    type="password" 
-                    id="senha" 
-                    name="senha" 
-                    required 
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    required
                     placeholder="••••••••"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-blue focus:border-primary-blue transition duration-150"
                 >
             </div>
             
-            <button 
-                type="submit" 
+            <button
+                type="submit"
                 class="w-full py-3 px-4 bg-primary-blue text-white font-bold rounded-lg shadow-lg hover:bg-blue-600 transition duration-200"
             >
                 Entrar
@@ -90,7 +90,7 @@
             
             <div class="mt-6 text-center">
                 <p class="text-sm text-gray-600">
-                    Não tem uma conta? 
+                    Não tem uma conta?
                     <a href="{{ route('aluno.register.form') }}" class="font-medium text-primary-blue hover:text-blue-700">
                         Matricule-se aqui
                     </a>
